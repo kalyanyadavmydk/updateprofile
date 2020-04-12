@@ -1,0 +1,18 @@
+<form (submit)="formsubmit(update)" #update="ngForm">
+  First Name:<input type="text" name="firstname" placeholder="firstname" required minlength="4" ngModel><br>
+  Last Name :<input type="text" name="lastname" placeholder="lastname" required minlength="3" ngModel><br>
+  upload your photo:<input type="file" name="photo" (change)="fileselect($event)" ngModel><br>
+  Rollnumber:<input type="text" placeholder="roll number" name="rollnumber" ngModel><br>
+  Date Of Birth:<input type="date" name="dateofbirth" required ngModel><br>
+  Email:<input type="email" placeholder="mail Id" name="email" required ngModel><br>
+  Mobile Number:<input type="number"  placeholder="phone number" name="phonenumber" required minlength="10" ngModel><br>
+  Gender :<input type="text" placeholder="gender" name="gender" required ngModel><br>
+  Year of Pass: <input type="number" name="passedout" required ngModel><br>
+  Institutiion: <input type="text" name="institution" placeholder="institution" required ngModel><br>
+  Branch/Group:<input type="text" name="branch" placeholder="branch/group" required ngModel><br>
+  Batch: <input type="number" name="batch" placeholder="batch" required ngModel><br>
+  Company: <input type="text" name="company" placeholder="company" required ngModel><br>
+  Desgination:<input type="text" name="desgination" placeholder="Desgination" required ngModel><br>
+  Location: <input type="text" name="location" placeholder="Company Location" required ngModel><br>
+  <button type="submit" >Submit</button>
+</form>
