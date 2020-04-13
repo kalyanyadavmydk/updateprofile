@@ -18,6 +18,10 @@ app.listen(3000,()=>{
     console.log("The server sarted")
 });
 
+var now=new Date()
+var days=now.getDate()
+var months=now.getMonth()
+
 const MIME_TYPE_MAP={
     'image/png':'png',
     'image/jpeg':'jpg',
@@ -40,7 +44,16 @@ const MIME_TYPE_MAP={
     }
   });
 
-
+  app.get('/birthdays',(req,res,next)=>{
+    student.find({day:days,month:months}).sort({firstname:1}).exec(function(err,docs){
+      if(err){
+        return res.send(err)
+      }
+      else{
+        return res.send(docs)
+      }
+    })
+  })
   app.post('/userdetails',multer({storage:storage}).single('file'), (req,res,next)=>{
       const url=req.protocol+'://'+req.get("host")
       imagepath=url+"/images/"+req.file.filename
@@ -68,7 +81,9 @@ const MIME_TYPE_MAP={
                 company:req.body.company.toLowerCase(),
                 desgination:req.body.desgination.toLowerCase(),
                 location:req.body.location.toLowerCase(),
-                phonenumber:req.body.phonenumber
+                phonenumber:req.body.phonenumber,
+                day:req.body.dateofbirth.getDate(),
+                month:req.body.dateofbirth.getMonth()
           },
           {
             upsert:true
@@ -99,7 +114,9 @@ const MIME_TYPE_MAP={
                 company:req.body.company.toLowerCase(),
                 desgination:req.body.desgination.toLowerCase(),
                 location:req.body.location.toLowerCase(),
-                phonenumber:req.body.phonenumber
+                phonenumber:req.body.phonenumber,
+                day:req.body.dateofbirth.getDate(),
+                month:req.body.dateofbirth.getMonth()
           },function(err,data){
             if(err){
                 console.log('error in creating details',err)
@@ -139,6 +156,8 @@ const MIME_TYPE_MAP={
           if(err){
           return res.send(err)}
           else{
+            console.log(docs[0].dateofbirth.getDate())
+            console.log(docs[0].dateofbirth.getMonth())
             return res.send(docs)
           }
   

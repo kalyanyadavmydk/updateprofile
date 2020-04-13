@@ -45,6 +45,12 @@ const userdetails=new mongoose.Schema({
   },
   email:{
       type:String
+  },
+  day:{
+      type:Number
+  },
+  month:{
+      type:Number
   }
 
 });
